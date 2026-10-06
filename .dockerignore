@@ -1,0 +1,17 @@
+.gradle/
+build/
+app/build/
+local.properties
+key.properties
+upload-keystore.jks
+app/upload-keystore.jks
+
+.env
+.venv/
+__pycache__/
+*.pyc
+
+bisnu_x.db
+bisnu_x/uploads/
+
+payment/razorpay-qr.*

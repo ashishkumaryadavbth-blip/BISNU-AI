@@ -1,0 +1,16 @@
+
+# BISNU-X secrets
+key.properties
+upload-keystore.jks
+app\upload-keystore.jks
+.env
+
+app/upload-keystore.jks
+.venv/
+.gradle/
+build/
+app/build/
+local.properties
+bisnu_x.db
+bisnu_x/uploads/
+payment/razorpay-qr.png

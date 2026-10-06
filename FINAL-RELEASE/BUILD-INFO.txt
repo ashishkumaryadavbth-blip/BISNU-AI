@@ -1,0 +1,35 @@
+BISNU-X RELEASE BUILD
+=====================
+
+Project:
+C:\Users\BLW\Downloads\BISNU-X
+
+APK:
+C:\Users\BLW\Downloads\BISNU-X\FINAL-RELEASE\BISNU-X-release.apk
+
+AAB:
+C:\Users\BLW\Downloads\BISNU-X\FINAL-RELEASE\BISNU-X-release.aab
+
+APK Size:
+12.49 MB
+
+AAB Size:
+11.94 MB
+
+Build Date:
+2026-10-06 16:32:36
+
+Native Android:
+YES
+
+Flutter:
+NO
+
+Razorpay secret:
+NOT embedded in APK
+
+Premium entitlement:
+SERVER-SIDE / WEBHOOK BASED
+
+Production cleartext HTTP:
+DISABLED

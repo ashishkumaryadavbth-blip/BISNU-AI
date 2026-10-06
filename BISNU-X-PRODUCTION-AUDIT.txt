@@ -1,0 +1,55 @@
+============================================================
+BISNU-X PRODUCTION / PUBLISH READINESS AUDIT
+============================================================
+DATE: 10/06/2026 15:53:54
+ROOT: C:\Users\BLW\Downloads\BISNU-X
+
+[PASS] Gradle wrapper
+[PASS] settings.gradle
+[PASS] Root build.gradle
+[PASS] Android app module
+[PASS] AndroidManifest.xml
+[PASS] Kotlin source
+[PASS] Native Android - no Flutter Gradle marker
+[PASS] Native Android - no Flutter SDK folder
+[PASS] Application ID configured
+[PASS] Compile SDK configured
+[PASS] Target SDK configured
+[PASS] Min SDK configured
+[PASS] Release signing configured
+[PASS] Release build type configured
+[PASS] Internet permission
+[PASS] key.properties exists locally :: Should NOT be committed
+[PASS] Root keystore exists :: Keep private
+[PASS] App keystore exists for signing :: Keep private
+[PASS] .gitignore exists
+[FAIL] key.properties ignored
+[FAIL] upload-keystore.jks ignored
+[PASS] Release APK exists
+APK PATH: C:\Users\BLW\Downloads\BISNU-X\app\build\outputs\apk\release\app-release.apk
+APK SIZE: 12.49 MB
+[PASS] APK signature verified
+[PASS] APK v2 signature verified
+[PASS] Single signer
+[PASS] Gradle clean
+[PASS] Release build
+[PASS] Kotlin source files found :: Count: 1
+C:\Users\BLW\Downloads\BISNU-X\app\src\main\kotlin\app\bisnux\mobile\MainActivity.kt :: 12.25 KB
+[PASS] Launcher Activity
+[PASS] Exported launcher Activity
+[PASS] Audio permission
+[PASS] Backend app.py
+[PASS] Backend database module
+[PASS] Backend payments module
+[PASS] Backend scanner module
+[PASS] Backend authentication module
+[PASS] Razorpay implementation present
+[PASS] Webhook handling present
+[PASS] Subscription database logic present
+[PASS] Webhook duplicate-event protection
+[PASS] Subscription webhook application
+[FAIL] RAZORPAY_KEY_ID configured
+[FAIL] RAZORPAY_KEY_SECRET configured
+[FAIL] RAZORPAY_WEBHOOK_SECRET configured
+[PASS] Backend .env exists :: Secret values intentionally not printed
+[FAIL] Git repository exists

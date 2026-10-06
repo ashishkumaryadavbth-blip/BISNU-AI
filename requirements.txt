@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+requests
+httpx
+pydantic
+pydantic-settings
+python-multipart
+razorpay
+PyJWT
+cryptography
+Pillow>=11
+psycopg[binary]>=3.2,<4
+ddgs>=9
+beautifulsoup4
