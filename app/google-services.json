@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "97712174428",
+    "project_id": "isnu-x",
+    "storage_bucket": "isnu-x.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97712174428:android:d72a00251fe10f9cf1bd99",
+        "android_client_info": {
+          "package_name": "app.bisnu_x.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97712174428-vo11g71c6cobbipshiilhl92fas4bds8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmNCXMmjlSWcLzQ8ENbN3WBoYdHKS061k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97712174428-vo11g71c6cobbipshiilhl92fas4bds8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

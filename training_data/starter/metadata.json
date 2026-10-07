@@ -1,0 +1,8 @@
+{
+  "source": "BISNU-X hand-authored synthetic smoke-test examples",
+  "license": "CC0-1.0",
+  "download_date": null,
+  "preprocessing": "Authored locally; UTF-8 JSONL with prompt/response fields; no external corpus used.",
+  "sample_count": 8,
+  "intended_use": "Pipeline validation only; not a capability benchmark."
+}

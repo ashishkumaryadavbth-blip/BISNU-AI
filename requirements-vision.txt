@@ -1,0 +1,2 @@
+-r requirements-model.txt
+Pillow>=11

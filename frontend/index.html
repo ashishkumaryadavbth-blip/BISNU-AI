@@ -1,0 +1,3573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080a0f">
+<meta name="description" content="BISNU-X AI">
+<title>BISNU-X AI</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+    --bg:#080a0f;
+    --bg2:#0d1017;
+    --side:#0b0e14;
+    --panel:#141821;
+    --panel2:#191e28;
+    --border:rgba(255,255,255,.09);
+    --border2:rgba(255,255,255,.15);
+    --text:#f5f7fb;
+    --muted:#8c95a5;
+    --muted2:#626b7b;
+    --accent:#8879ff;
+    --accent2:#6556f5;
+    --user:#252b37;
+    --success:#42d483;
+    --danger:#ff5968;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+button,input,textarea{
+    font:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    color:inherit;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* SPLASH */
+
+#splash{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    background:
+        radial-gradient(circle at center,rgba(136,121,255,.18),transparent 35%),
+        var(--bg);
+}
+
+.logo{
+    width:72px;
+    height:72px;
+    border-radius:23px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#aaa0ff,#6252f4);
+    box-shadow:0 20px 60px rgba(105,85,255,.3);
+    font-size:38px;
+    font-weight:900;
+}
+
+#splash h1{
+    margin-top:20px;
+    font-size:32px;
+}
+
+#splash p{
+    color:var(--muted);
+    margin-top:7px;
+}
+
+.loader{
+    display:flex;
+    gap:5px;
+    margin-top:25px;
+}
+
+.loader i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#a198ff;
+    animation:bounce .8s infinite alternate;
+}
+
+.loader i:nth-child(2){animation-delay:.2s}
+.loader i:nth-child(3){animation-delay:.4s}
+
+@keyframes bounce{
+    from{transform:translateY(0);opacity:.3}
+    to{transform:translateY(-7px);opacity:1}
+}
+
+/* LOGIN */
+
+#login{
+    position:fixed;
+    inset:0;
+    z-index:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:
+        radial-gradient(circle at center,rgba(136,121,255,.13),transparent 38%),
+        var(--bg);
+}
+
+.login-card{
+    width:min(420px,100%);
+    padding:40px 30px;
+    border:1px solid var(--border);
+    border-radius:28px;
+    background:rgba(18,22,30,.88);
+    backdrop-filter:blur(25px);
+    text-align:center;
+    box-shadow:0 30px 100px rgba(0,0,0,.4);
+}
+
+.login-card .logo{
+    width:62px;
+    height:62px;
+    font-size:31px;
+    margin:auto;
+}
+
+.login-card h1{
+    margin-top:22px;
+    font-size:27px;
+}
+
+.login-card p{
+    color:var(--muted);
+    line-height:1.6;
+    margin:10px auto 27px;
+}
+
+.google{
+    width:100%;
+    height:54px;
+    border-radius:14px;
+    background:#fff;
+    color:#202124;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.google:hover{
+    transform:translateY(-1px);
+    box-shadow:0 12px 35px rgba(0,0,0,.3);
+}
+
+.google-g{
+    font-size:22px;
+    font-weight:900;
+}
+
+.login-small{
+    font-size:11px!important;
+    color:var(--muted2)!important;
+    margin-top:15px!important;
+}
+
+/* APP */
+
+#app{
+    width:100%;
+    height:100dvh;
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:275px;
+    flex-shrink:0;
+    height:100%;
+    background:var(--side);
+    border-right:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    z-index:100;
+}
+
+.side-top{
+    padding:16px 14px 10px;
+}
+
+.brand{
+    height:42px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 5px;
+}
+
+.small-logo{
+    width:31px;
+    height:31px;
+    border-radius:10px;
+    background:linear-gradient(135deg,#aaa0ff,#6252f4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.brand strong{
+    font-size:16px;
+}
+
+.brand small{
+    color:var(--accent);
+    font-weight:800;
+    margin-left:3px;
+}
+
+.new-chat{
+    width:100%;
+    height:48px;
+    margin-top:17px;
+    border-radius:13px;
+    background:var(--panel2);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 15px;
+    font-weight:700;
+}
+
+.new-chat:hover{
+    background:#202631;
+}
+
+.side-btn{
+    width:100%;
+    height:42px;
+    margin-top:5px;
+    border-radius:10px;
+    background:transparent;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:0 13px;
+    text-align:left;
+}
+
+.side-btn:hover{
+    background:rgba(255,255,255,.05);
+    color:white;
+}
+
+.nav{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid var(--border);
+}
+
+.nav button.active{
+    color:white;
+    background:rgba(136,121,255,.12);
+}
+
+/* HISTORY */
+
+.history{
+    flex:1;
+    min-height:0;
+    overflow:hidden;
+    padding:12px 14px;
+}
+
+.history-title{
+    color:var(--muted2);
+    font-size:10px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    padding:7px 8px 9px;
+}
+
+.history-list{
+    height:100%;
+    overflow:auto;
+}
+
+.history-item{
+    width:100%;
+    padding:10px;
+    min-height:40px;
+    border-radius:9px;
+    background:transparent;
+    color:var(--muted);
+    text-align:left;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    margin-bottom:3px;
+}
+
+.history-item:hover,
+.history-item.active{
+    background:rgba(255,255,255,.055);
+    color:white;
+}
+
+/* SIDE BOTTOM */
+
+.side-bottom{
+    border-top:1px solid var(--border);
+    padding:10px 14px 13px;
+}
+
+.status{
+    height:30px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--muted2);
+    font-size:10px;
+    padding:0 8px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--muted2);
+}
+
+.dot.online{
+    background:var(--success);
+    box-shadow:0 0 10px rgba(66,212,131,.7);
+}
+
+.dot.offline{
+    background:var(--danger);
+}
+
+.user{
+    margin-top:7px;
+    padding:8px;
+    border-radius:12px;
+    background:rgba(255,255,255,.035);
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.avatar{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#7770ff,#4035c9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:800;
+}
+
+.user-info{
+    min-width:0;
+    flex:1;
+}
+
+.user-info strong,
+.user-info small{
+    display:block;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.user-info strong{
+    font-size:11px;
+}
+
+.user-info small{
+    color:var(--muted2);
+    font-size:9px;
+    margin-top:2px;
+}
+
+.logout{
+    background:transparent;
+    color:var(--muted);
+    font-size:17px;
+}
+
+/* MAIN */
+
+.main{
+    min-width:0;
+    flex:1;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.topbar{
+    height:62px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+    border-bottom:1px solid var(--border);
+    background:rgba(8,10,15,.82);
+    backdrop-filter:blur(20px);
+    z-index:50;
+}
+
+.top-left{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.mobile-menu{
+    display:none;
+    width:35px;
+    height:35px;
+    border-radius:9px;
+    background:transparent;
+    font-size:19px;
+}
+
+.chat-title{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.model-wrap{
+    position:relative;
+}
+
+.model-btn{
+    height:38px;
+    padding:0 12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.035);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:11px;
+    font-weight:700;
+}
+
+.model-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--success);
+}
+
+.model-menu{
+    display:none;
+    position:absolute;
+    right:0;
+    top:45px;
+    width:230px;
+    padding:6px;
+    border-radius:14px;
+    border:1px solid var(--border2);
+    background:#171b24;
+    box-shadow:0 25px 60px rgba(0,0,0,.5);
+}
+
+.model-menu.open{
+    display:block;
+}
+
+.model-menu button{
+    width:100%;
+    text-align:left;
+    padding:11px;
+    background:transparent;
+    border-radius:9px;
+}
+
+.model-menu button:hover{
+    background:rgba(255,255,255,.06);
+}
+
+.model-menu strong,
+.model-menu small{
+    display:block;
+}
+
+.model-menu strong{
+    font-size:12px;
+}
+
+.model-menu small{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:3px;
+}
+
+/* CHAT */
+
+.chat{
+    flex:1;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+}
+
+.messages{
+    flex:1;
+    min-height:0;
+    overflow-y:auto;
+    padding:30px 16px 10px;
+}
+
+.empty{
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding-bottom:70px;
+}
+
+.empty .logo{
+    width:64px;
+    height:64px;
+    font-size:33px;
+    margin-bottom:20px;
+}
+
+.empty h1{
+    font-size:clamp(28px,4vw,42px);
+    letter-spacing:-1.5px;
+    text-align:center;
+}
+
+.empty>p{
+    color:var(--muted);
+    margin-top:8px;
+}
+
+.suggestions{
+    width:min(760px,100%);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:30px;
+}
+
+.suggestion{
+    min-height:95px;
+    padding:15px;
+    text-align:left;
+    background:rgba(255,255,255,.025);
+    border:1px solid var(--border);
+    border-radius:15px;
+    transition:.2s;
+}
+
+.suggestion:hover{
+    background:rgba(136,121,255,.07);
+    border-color:rgba(136,121,255,.3);
+    transform:translateY(-1px);
+}
+
+.suggestion b,
+.suggestion strong,
+.suggestion small{
+    display:block;
+}
+
+.suggestion b{
+    color:#aaa1ff;
+    margin-bottom:12px;
+}
+
+.suggestion strong{
+    font-size:12px;
+}
+
+.suggestion small{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:4px;
+}
+
+/* MESSAGE BUBBLES */
+
+.message{
+    width:min(900px,100%);
+    margin:0 auto 24px;
+    display:flex;
+    gap:10px;
+    animation:appear .2s ease;
+}
+
+@keyframes appear{
+    from{opacity:0;transform:translateY(5px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.message.user{
+    justify-content:flex-end;
+}
+
+.message-avatar{
+    width:32px;
+    height:32px;
+    flex-shrink:0;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#7770ff,#4035c9);
+    font-size:11px;
+    font-weight:900;
+}
+
+.message.user .message-avatar{
+    order:2;
+    background:#303643;
+}
+
+.message-body{
+    max-width:min(760px,83%);
+}
+
+.message-label{
+    font-size:9px;
+    color:var(--muted2);
+    margin:0 0 6px 4px;
+    font-weight:800;
+}
+
+.message.user .message-body{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.bubble{
+    white-space:pre-wrap;
+    word-break:break-word;
+    line-height:1.65;
+    font-size:14px;
+    padding:13px 16px;
+    border-radius:17px;
+}
+
+.ai-bubble{
+    background:#12161e;
+    border:1px solid var(--border);
+    border-top-left-radius:5px;
+}
+
+.user-bubble{
+    background:var(--user);
+    border:1px solid rgba(255,255,255,.07);
+    border-top-right-radius:5px;
+}
+
+.actions{
+    display:flex;
+    gap:4px;
+    margin-top:6px;
+}
+
+.actions button{
+    width:29px;
+    height:29px;
+    border-radius:8px;
+    background:transparent;
+    color:var(--muted);
+}
+
+.actions button:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+/* THINKING */
+
+.thinking{
+    width:min(900px,100%);
+    margin:0 auto 24px;
+    display:flex;
+    gap:10px;
+}
+
+.thinking-avatar{
+    width:32px;
+    height:32px;
+    border-radius:10px;
+    flex-shrink:0;
+    background:linear-gradient(135deg,#7770ff,#4035c9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:900;
+}
+
+.thinking-box{
+    background:#12161e;
+    border:1px solid var(--border);
+    border-top-left-radius:5px;
+    border-radius:17px;
+    padding:12px 15px;
+}
+
+.thinking-title{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#aaa1ff;
+    font-size:10px;
+    font-weight:900;
+}
+
+.thinking-dots{
+    display:flex;
+    gap:3px;
+}
+
+.thinking-dots i{
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#aaa1ff;
+    animation:td .8s infinite alternate;
+}
+
+.thinking-dots i:nth-child(2){animation-delay:.2s}
+.thinking-dots i:nth-child(3){animation-delay:.4s}
+
+@keyframes td{
+    from{opacity:.2}
+    to{opacity:1}
+}
+
+.thinking-sub{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:6px;
+}
+
+/* EVIDENCE */
+
+.evidence{
+    margin-top:9px;
+    padding:10px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:rgba(136,121,255,.05);
+}
+
+.evidence-title{
+    color:#aaa1ff;
+    font-size:9px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.evidence a{
+    display:block;
+    color:#b1a9ff;
+    font-size:10px;
+    margin-top:5px;
+    text-decoration:none;
+}
+
+/* COMPOSER */
+
+.composer-area{
+    padding:8px 18px 17px;
+}
+
+.composer-wrap{
+    width:min(900px,100%);
+    margin:auto;
+}
+
+.composer{
+    min-height:61px;
+    display:flex;
+    align-items:flex-end;
+    gap:6px;
+    padding:8px;
+    border-radius:19px;
+    background:#151922;
+    border:1px solid var(--border2);
+    box-shadow:0 15px 50px rgba(0,0,0,.18);
+}
+
+.composer textarea{
+    flex:1;
+    min-width:0;
+    max-height:180px;
+    resize:none;
+    outline:0;
+    border:0;
+    background:transparent;
+    color:white;
+    padding:11px 5px;
+    line-height:1.5;
+}
+
+.composer textarea::placeholder{
+    color:#697181;
+}
+
+.composer-btn{
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+    border-radius:11px;
+    background:transparent;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.composer-btn:hover{
+    background:rgba(255,255,255,.06);
+    color:white;
+}
+
+.send{
+    background:white;
+    color:#11131a;
+    font-size:20px;
+    font-weight:900;
+}
+
+.send.stop{
+    background:#292f3b;
+    color:white;
+}
+
+.composer-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:6px 4px 0;
+    color:var(--muted2);
+    font-size:9px;
+}
+
+.live{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+}
+
+.live input{
+    display:none;
+}
+
+.switch{
+    width:27px;
+    height:15px;
+    background:#303641;
+    border-radius:20px;
+    position:relative;
+}
+
+.switch:after{
+    content:"";
+    position:absolute;
+    width:9px;
+    height:9px;
+    left:3px;
+    top:3px;
+    border-radius:50%;
+    background:#89909e;
+    transition:.2s;
+}
+
+.live input:checked+.switch{
+    background:var(--accent);
+}
+
+.live input:checked+.switch:after{
+    left:15px;
+    background:white;
+}
+
+.disclaimer{
+    text-align:center;
+    color:var(--muted2);
+    font-size:8px;
+    margin-top:6px;
+}
+
+/* APPS */
+
+.apps{
+    flex:1;
+    overflow:auto;
+    padding:40px 25px;
+}
+
+.apps-inner{
+    width:min(1000px,100%);
+    margin:auto;
+}
+
+.apps-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+}
+
+.eyebrow{
+    color:#aaa1ff;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.apps h1{
+    margin-top:6px;
+    font-size:38px;
+}
+
+.apps-head p{
+    color:var(--muted);
+    margin-top:7px;
+}
+
+.apps-grid{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.app-card{
+    min-height:175px;
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:19px;
+    background:rgba(255,255,255,.025);
+    transition:.2s;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.app-card:hover{
+    transform:translateY(-2px);
+    border-color:rgba(136,121,255,.25);
+}
+
+.app-icon{
+    width:44px;
+    height:44px;
+    border-radius:13px;
+    background:rgba(136,121,255,.12);
+    color:#aaa1ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.app-card h3{
+    margin-top:15px;
+    font-size:15px;
+}
+
+.app-card p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+.app-open{
+    margin-top:auto;
+    padding:8px 13px;
+    border-radius:9px;
+    background:rgba(255,255,255,.06);
+    font-size:10px;
+}
+
+/* MOBILE */
+
+@media(max-width:760px){
+
+    .sidebar{
+        position:fixed;
+        left:-290px;
+        top:0;
+        bottom:0;
+        transition:left .22s;
+        box-shadow:20px 0 60px rgba(0,0,0,.4);
+    }
+
+    .sidebar.open{
+        left:0;
+    }
+
+    #overlay{
+        position:fixed;
+        inset:0;
+        z-index:90;
+        background:rgba(0,0,0,.6);
+        display:none;
+    }
+
+    #overlay.open{
+        display:block;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .topbar{
+        height:58px;
+        padding:0 10px;
+    }
+
+    .chat-title{
+        display:none;
+    }
+
+    .messages{
+        padding:20px 9px 8px;
+    }
+
+    .message-body{
+        max-width:89%;
+    }
+
+    .bubble{
+        font-size:13px;
+        padding:11px 13px;
+    }
+
+    .message-avatar,
+    .thinking-avatar{
+        width:28px;
+        height:28px;
+        border-radius:8px;
+    }
+
+    .suggestions{
+        grid-template-columns:1fr;
+        margin-top:23px;
+    }
+
+    .suggestion{
+        min-height:72px;
+    }
+
+    .composer-area{
+        padding:5px 8px 12px;
+    }
+
+    .composer{
+        min-height:55px;
+        border-radius:16px;
+        padding:7px;
+    }
+
+    .composer-btn,
+    .send{
+        width:36px;
+        height:36px;
+    }
+
+    .composer-info{
+        padding-top:5px;
+    }
+
+    .apps{
+        padding:25px 15px 60px;
+    }
+
+    .apps-head{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .apps h1{
+        font-size:30px;
+    }
+
+    .apps-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= SPLASH ================= -->
+
+<div id="splash">
+    <div class="logo">B</div>
+    <h1>BISNU-X</h1>
+    <p>Independent AI Platform</p>
+
+    <div class="loader">
+        <i></i><i></i><i></i>
+    </div>
+</div>
+
+
+<!-- ================= LOGIN ================= -->
+
+<div id="login" class="hidden">
+
+    <div class="login-card">
+
+        <div class="logo">B</div>
+
+        <h1>Welcome to BISNU-X</h1>
+
+        <p>
+            Your AI workspace for chat, research,
+            coding and more.
+        </p>
+
+        <button id="googleLogin" class="google">
+            <span class="google-g">G</span>
+            <span>Continue with Google</span>
+        </button>
+
+        <p class="login-small">
+            Secure Google authentication can be connected
+            to the backend OAuth provider.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MOBILE OVERLAY ================= -->
+
+<div id="overlay"></div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app" class="hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="side-top">
+
+            <div class="brand">
+
+                <div class="small-logo">B</div>
+
+                <div>
+                    <strong>BISNU-X</strong>
+                    <small>AI</small>
+                </div>
+
+            </div>
+
+
+            <button id="newChat" class="new-chat">
+                <span>＋</span>
+                <span>New chat</span>
+            </button>
+
+
+            <button id="searchChats" class="side-btn">
+                <span>⌕</span>
+                <span>Search chats</span>
+            </button>
+
+
+            <div class="nav">
+
+                <button
+                    id="chatNav"
+                    class="side-btn active">
+                    <span>◈</span>
+                    <span>Chat</span>
+                </button>
+
+                <button
+                    id="appsNav"
+                    class="side-btn">
+                    <span>▦</span>
+                    <span>BISNU Apps</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="history">
+
+            <div class="history-title">
+                Recent chats
+            </div>
+
+            <div id="historyList"
+                 class="history-list"></div>
+
+        </div>
+
+
+        <div class="side-bottom">
+
+            <div class="status">
+
+                <span id="statusDot"
+                      class="dot"></span>
+
+                <span id="statusText">
+                    Connecting...
+                </span>
+
+            </div>
+
+
+            <button id="settings"
+                    class="side-btn">
+                <span>⚙</span>
+                <span>Settings</span>
+            </button>
+
+
+            <div class="user">
+
+                <div id="avatar"
+                     class="avatar">
+                    G
+                </div>
+
+                <div class="user-info">
+
+                    <strong id="username">
+                        Google User
+                    </strong>
+
+                    <small>
+                        Google account
+                    </small>
+
+                </div>
+
+                <button id="logout"
+                        class="logout">
+                    ⋮
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="top-left">
+
+                <button id="mobileMenu"
+                        class="mobile-menu">
+                    ☰
+                </button>
+
+                <span id="chatTitle"
+                      class="chat-title">
+                    New chat
+                </span>
+
+            </div>
+
+
+            <div class="model-wrap">
+
+                <button id="modelBtn"
+                        class="model-btn">
+
+                    <span class="model-dot"></span>
+
+                    <span id="modelName">
+                        BISNU AUTO
+                    </span>
+
+                    <span>⌄</span>
+
+                </button>
+
+
+                <div id="modelMenu"
+                     class="model-menu">
+
+                    <button data-model="auto">
+                        <strong>BISNU AUTO</strong>
+                        <small>Automatic model routing</small>
+                    </button>
+
+                    <button data-model="qwen">
+                        <strong>Qwen</strong>
+                        <small>Qwen model</small>
+                    </button>
+
+                    <button data-model="llama">
+                        <strong>Llama</strong>
+                        <small>Llama model</small>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CHAT -->
+
+        <section id="chatScreen"
+                 class="chat">
+
+            <div id="messages"
+                 class="messages">
+
+                <div id="empty"
+                     class="empty">
+
+                    <div class="logo">B</div>
+
+                    <h1>
+                        How can I help you?
+                    </h1>
+
+                    <p>
+                        Ask BISNU-X anything.
+                    </p>
+
+
+                    <div class="suggestions">
+
+                        <button
+                            class="suggestion"
+                            data-prompt="Explain this topic to me simply">
+
+                            <b>✦</b>
+                            <strong>Learn something</strong>
+                            <small>
+                                Get a simple explanation
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="suggestion"
+                            data-prompt="Help me write something">
+
+                            <b>✎</b>
+                            <strong>Write</strong>
+                            <small>
+                                Create and improve content
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="suggestion"
+                            data-prompt="Help me solve this coding problem">
+
+                            <b>⌘</b>
+                            <strong>Code</strong>
+                            <small>
+                                Build and debug code
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="suggestion"
+                            data-prompt="Research this topic and give me useful evidence">
+
+                            <b>⌕</b>
+                            <strong>Research</strong>
+                            <small>
+                                Search and explain information
+                            </small>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPOSER -->
+
+            <div class="composer-area">
+
+                <div class="composer-wrap">
+
+                    <div class="composer">
+
+                        <button id="attach"
+                                class="composer-btn">
+                            ＋
+                        </button>
+
+
+                        <textarea
+                            id="input"
+                            rows="1"
+                            placeholder="Message BISNU-X..."
+                            autocomplete="off"></textarea>
+
+
+                        <button id="voice"
+                                class="composer-btn">
+                            ◉
+                        </button>
+
+
+                        <button id="send"
+                                class="composer-btn send">
+                            ↑
+                        </button>
+
+                    </div>
+
+
+                    <div class="composer-info">
+
+                        <label class="live">
+
+                            <input
+                                id="liveSearch"
+                                type="checkbox">
+
+                            <span class="switch"></span>
+
+                            <span>Live Search</span>
+
+                        </label>
+
+
+                        <span id="count">
+                            0
+                        </span>
+
+                        <span>
+                            Enter to send · Shift+Enter
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="disclaimer">
+                    BISNU-X can make mistakes. Verify important information.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- APPS -->
+
+        <section id="appsScreen"
+                 class="apps hidden">
+
+            <div class="apps-inner">
+
+                <div class="apps-head">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            BISNU ECOSYSTEM
+                        </span>
+
+                        <h1>BISNU Apps</h1>
+
+                        <p>
+                            AI experiences inside the BISNU-X platform.
+                        </p>
+
+                    </div>
+
+                    <button id="backChat"
+                            class="side-btn"
+                            style="width:auto">
+                        ← Back to Chat
+                    </button>
+
+                </div>
+
+
+                <div class="apps-grid">
+
+                    <article class="app-card">
+                        <div class="app-icon">✦</div>
+                        <h3>AI Chat</h3>
+                        <p>General AI conversation.</p>
+                        <button class="app-open"
+                                data-open="chat">
+                            Open
+                        </button>
+                    </article>
+
+
+                    <article class="app-card">
+                        <div class="app-icon">⌕</div>
+                        <h3>Research</h3>
+                        <p>Research with Live Search.</p>
+                        <button class="app-open"
+                                data-open="chat">
+                            Open
+                        </button>
+                    </article>
+
+
+                    <article class="app-card">
+                        <div class="app-icon">⌘</div>
+                        <h3>Code</h3>
+                        <p>Build and debug projects.</p>
+                        <button class="app-open"
+                                data-open="chat">
+                            Open
+                        </button>
+                    </article>
+
+
+                    <article class="app-card">
+                        <div class="app-icon">▣</div>
+                        <h3>Study</h3>
+                        <p>Learning and explanations.</p>
+                        <button class="app-open"
+                                data-open="chat">
+                            Open
+                        </button>
+                    </article>
+
+
+                    <article class="app-card">
+                        <div class="app-icon">◇</div>
+                        <h3>Documents</h3>
+                        <p>Document AI workspace.</p>
+                        <button class="app-open"
+                                data-open="chat">
+                            Open
+                        </button>
+                    </article>
+
+
+                    <article class="app-card">
+                        <div class="app-icon">◎</div>
+                        <h3>AI Tools</h3>
+                        <p>Additional BISNU tools.</p>
+                        <button class="app-open"
+                                data-open="chat">
+                            Open
+                        </button>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+"use strict";
+
+/*
+=========================================================
+BISNU-X ALL-IN-ONE FRONTEND
+=========================================================
+
+Existing backend endpoints:
+
+GET:
+    /health
+
+POST:
+    /v1/chat
+
+POST BODY:
+{
+    messages: [
+        {
+            role: "user",
+            content: "..."
+        }
+    ],
+    model: "auto",
+    live_search: false
+}
+
+=========================================================
+*/
+
+
+/* =====================================================
+   CONFIG
+===================================================== */
+
+const HEALTH_URL = "/health";
+const CHAT_URL = "/v1/chat";
+
+const USER_KEY = "bisnu_user";
+const CHATS_KEY = "bisnu_chats";
+const CURRENT_KEY = "bisnu_current_chat";
+const MODEL_KEY = "bisnu_model";
+const LIVE_KEY = "bisnu_live";
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+const state = {
+
+    user: null,
+
+    chats: [],
+
+    currentChatId: null,
+
+    model:
+        localStorage.getItem(MODEL_KEY) ||
+        "auto",
+
+    liveSearch:
+        localStorage.getItem(LIVE_KEY) === "true",
+
+    generating: false,
+
+    controller: null
+};
+
+
+/* =====================================================
+   DOM
+===================================================== */
+
+const splash =
+    document.getElementById("splash");
+
+const login =
+    document.getElementById("login");
+
+const app =
+    document.getElementById("app");
+
+const messages =
+    document.getElementById("messages");
+
+const empty =
+    document.getElementById("empty");
+
+const input =
+    document.getElementById("input");
+
+const send =
+    document.getElementById("send");
+
+const historyList =
+    document.getElementById("historyList");
+
+const chatTitle =
+    document.getElementById("chatTitle");
+
+const modelName =
+    document.getElementById("modelName");
+
+const modelMenu =
+    document.getElementById("modelMenu");
+
+const liveSearch =
+    document.getElementById("liveSearch");
+
+
+/* =====================================================
+   START
+===================================================== */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    liveSearch.checked =
+        state.liveSearch;
+
+    updateModel();
+
+    setTimeout(() => {
+
+        splash.classList.add("hidden");
+
+        const saved =
+            localStorage.getItem(USER_KEY);
+
+        if (saved) {
+
+            try {
+
+                state.user =
+                    JSON.parse(saved);
+
+                enterApp();
+
+            } catch {
+
+                showLogin();
+            }
+
+        } else {
+
+            showLogin();
+        }
+
+    }, 1000);
+
+    checkHealth();
+
+    setInterval(
+        checkHealth,
+        30000
+    );
+
+    setupEvents();
+});
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function showLogin(){
+
+    login.classList.remove("hidden");
+    app.classList.add("hidden");
+}
+
+
+document
+    .getElementById("googleLogin")
+    .addEventListener("click", async () => {
+
+        /*
+        REAL GOOGLE OAUTH:
+
+        Your backend can expose something like:
+
+            /auth/google
+
+        Then this button can redirect there.
+
+        The current UI does NOT pretend that a
+        local click is a real Google authentication.
+        */
+
+        const user = {
+
+            name:
+                "Google User",
+
+            email:
+                "",
+
+            avatar:
+                "G"
+        };
+
+        state.user = user;
+
+        localStorage.setItem(
+            USER_KEY,
+            JSON.stringify(user)
+        );
+
+        enterApp();
+    });
+
+
+function enterApp(){
+
+    login.classList.add("hidden");
+    splash.classList.add("hidden");
+    app.classList.remove("hidden");
+
+    updateUser();
+
+    loadChats();
+
+    if (!state.currentChatId) {
+
+        createChat(false);
+
+    } else {
+
+        renderChat();
+    }
+}
+
+
+/* =====================================================
+   USER
+===================================================== */
+
+function updateUser(){
+
+    const name =
+        state.user?.name ||
+        "Google User";
+
+    document.getElementById(
+        "username"
+    ).textContent = name;
+
+    document.getElementById(
+        "avatar"
+    ).textContent =
+        name.charAt(0).toUpperCase();
+}
+
+
+document
+    .getElementById("logout")
+    .addEventListener("click", () => {
+
+        localStorage.removeItem(
+            USER_KEY
+        );
+
+        state.user = null;
+
+        app.classList.add("hidden");
+
+        showLogin();
+    });
+
+
+/* =====================================================
+   CHAT STORAGE
+===================================================== */
+
+function loadChats(){
+
+    try {
+
+        state.chats =
+            JSON.parse(
+                localStorage.getItem(
+                    CHATS_KEY
+                )
+            ) || [];
+
+    } catch {
+
+        state.chats = [];
+    }
+
+    state.currentChatId =
+        localStorage.getItem(
+            CURRENT_KEY
+        );
+
+    renderHistory();
+}
+
+
+function saveChats(){
+
+    localStorage.setItem(
+        CHATS_KEY,
+        JSON.stringify(state.chats)
+    );
+
+    if (state.currentChatId) {
+
+        localStorage.setItem(
+            CURRENT_KEY,
+            state.currentChatId
+        );
+    }
+}
+
+
+function createChat(save = true){
+
+    const chat = {
+
+        id:
+            "chat_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .slice(2,7),
+
+        title:
+            "New chat",
+
+        messages: [],
+
+        createdAt:
+            new Date().toISOString()
+    };
+
+    state.chats.unshift(chat);
+
+    state.currentChatId =
+        chat.id;
+
+    if (save) {
+        saveChats();
+    }
+
+    renderHistory();
+    renderChat();
+
+    showChat();
+
+    input.focus();
+}
+
+
+document
+    .getElementById("newChat")
+    .addEventListener(
+        "click",
+        () => createChat(true)
+    );
+
+
+function currentChat(){
+
+    return state.chats.find(
+        chat =>
+            chat.id ===
+            state.currentChatId
+    );
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+function renderHistory(){
+
+    historyList.innerHTML = "";
+
+    state.chats
+        .slice(0,50)
+        .forEach(chat => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "history-item";
+
+            if (
+                chat.id ===
+                state.currentChatId
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+            }
+
+            button.textContent =
+                chat.title;
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    state.currentChatId =
+                        chat.id;
+
+                    saveChats();
+
+                    renderHistory();
+                    renderChat();
+
+                    closeSidebar();
+                }
+            );
+
+            historyList.appendChild(
+                button
+            );
+        });
+}
+
+
+/* =====================================================
+   RENDER CHAT
+===================================================== */
+
+function renderChat(){
+
+    messages.innerHTML = "";
+
+    const chat =
+        currentChat();
+
+    if (
+        !chat ||
+        chat.messages.length === 0
+    ){
+
+        messages.appendChild(
+            empty
+        );
+
+        empty.classList.remove(
+            "hidden"
+        );
+
+        chatTitle.textContent =
+            chat?.title ||
+            "New chat";
+
+        return;
+    }
+
+    empty.classList.add(
+        "hidden"
+    );
+
+    chat.messages.forEach(
+        message =>
+            renderMessage(message)
+    );
+
+    chatTitle.textContent =
+        chat.title;
+
+    scrollBottom();
+}
+
+
+/* =====================================================
+   ADD MESSAGE
+===================================================== */
+
+function addMessage(
+    role,
+    content,
+    extra = {}
+){
+
+    const chat =
+        currentChat();
+
+    if (!chat) return;
+
+    const message = {
+
+        id:
+            "msg_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .slice(2,6),
+
+        role,
+
+        content,
+
+        timestamp:
+            new Date().toISOString(),
+
+        ...extra
+    };
+
+    chat.messages.push(
+        message
+    );
+
+    if (
+        role === "user" &&
+        chat.title === "New chat"
+    ){
+
+        chat.title =
+            makeTitle(content);
+    }
+
+    saveChats();
+    renderHistory();
+
+    return message;
+}
+
+
+function makeTitle(text){
+
+    const value =
+        text
+            .replace(/\s+/g," ")
+            .trim();
+
+    if (!value)
+        return "New chat";
+
+    return value.length > 38
+        ? value.slice(0,38) + "..."
+        : value;
+}
+
+
+/* =====================================================
+   MESSAGE UI
+===================================================== */
+
+function renderMessage(message){
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "message " +
+        (message.role === "user"
+            ? "user"
+            : "assistant");
+
+
+    const avatar =
+        document.createElement("div");
+
+    avatar.className =
+        "message-avatar";
+
+    avatar.textContent =
+        message.role === "user"
+            ? getInitial()
+            : "B";
+
+
+    const body =
+        document.createElement("div");
+
+    body.className =
+        "message-body";
+
+
+    const label =
+        document.createElement("div");
+
+    label.className =
+        "message-label";
+
+    label.textContent =
+        message.role === "user"
+            ? "YOU"
+            : "BISNU AI";
+
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className =
+        "bubble " +
+        (
+            message.role === "user"
+                ? "user-bubble"
+                : "ai-bubble"
+        );
+
+    bubble.textContent =
+        message.content || "";
+
+
+    body.appendChild(label);
+    body.appendChild(bubble);
+
+
+    if (
+        message.role ===
+        "assistant"
+    ){
+
+        const actions =
+            document.createElement("div");
+
+        actions.className =
+            "actions";
+
+
+        const copy =
+            document.createElement("button");
+
+        copy.textContent = "⧉";
+
+        copy.title = "Copy";
+
+        copy.onclick =
+            () => copyText(
+                message.content
+            );
+
+
+        const regenerate =
+            document.createElement("button");
+
+        regenerate.textContent = "↻";
+
+        regenerate.title =
+            "Regenerate";
+
+        regenerate.onclick =
+            () => regenerateMessage(
+                message.id
+            );
+
+
+        actions.appendChild(copy);
+        actions.appendChild(regenerate);
+
+        body.appendChild(actions);
+
+
+        if (
+            Array.isArray(
+                message.live_evidence
+            ) &&
+            message.live_evidence.length
+        ){
+
+            const evidence =
+                document.createElement(
+                    "div"
+                );
+
+            evidence.className =
+                "evidence";
+
+
+            const title =
+                document.createElement(
+                    "div"
+                );
+
+            title.className =
+                "evidence-title";
+
+            title.textContent =
+                "LIVE SEARCH EVIDENCE";
+
+            evidence.appendChild(title);
+
+
+            message.live_evidence
+                .slice(0,8)
+                .forEach(source => {
+
+                    const link =
+                        document.createElement(
+                            "a"
+                        );
+
+                    const url =
+                        typeof source ===
+                        "string"
+                            ? source
+                            : (
+                                source.url ||
+                                source.link ||
+                                "#"
+                            );
+
+                    link.href = url;
+
+                    link.target =
+                        "_blank";
+
+                    link.rel =
+                        "noopener noreferrer";
+
+                    link.textContent =
+                        typeof source ===
+                        "string"
+                            ? source
+                            : (
+                                source.title ||
+                                source.name ||
+                                url
+                            );
+
+                    evidence.appendChild(
+                        link
+                    );
+                });
+
+            body.appendChild(
+                evidence
+            );
+        }
+    }
+
+
+    row.appendChild(avatar);
+    row.appendChild(body);
+
+    messages.appendChild(row);
+}
+
+
+/* =====================================================
+   THINKING
+===================================================== */
+
+function showThinking(){
+
+    removeThinking();
+
+    const box =
+        document.createElement(
+            "div"
+        );
+
+    box.id =
+        "thinking";
+
+    box.className =
+        "thinking";
+
+
+    const avatar =
+        document.createElement(
+            "div"
+        );
+
+    avatar.className =
+        "thinking-avatar";
+
+    avatar.textContent = "B";
+
+
+    const thinkingBox =
+        document.createElement(
+            "div"
+        );
+
+    thinkingBox.className =
+        "thinking-box";
+
+
+    const title =
+        document.createElement(
+            "div"
+        );
+
+    title.className =
+        "thinking-title";
+
+    title.innerHTML = `
+        <span>BISNU AI IS THINKING</span>
+        <span class="thinking-dots">
+            <i></i><i></i><i></i>
+        </span>
+    `;
+
+
+    const sub =
+        document.createElement(
+            "div"
+        );
+
+    sub.className =
+        "thinking-sub";
+
+    sub.textContent =
+        state.liveSearch
+            ? "Processing request and checking live information..."
+            : "Processing your request...";
+
+
+    thinkingBox.appendChild(title);
+    thinkingBox.appendChild(sub);
+
+    box.appendChild(avatar);
+    box.appendChild(thinkingBox);
+
+    messages.appendChild(box);
+
+    scrollBottom();
+}
+
+
+function removeThinking(){
+
+    const element =
+        document.getElementById(
+            "thinking"
+        );
+
+    if (element)
+        element.remove();
+}
+
+
+/* =====================================================
+   SEND TO EXISTING BACKEND
+===================================================== */
+
+async function sendMessage(){
+
+    if (state.generating){
+
+        stopGeneration();
+
+        return;
+    }
+
+
+    const text =
+        input.value.trim();
+
+    if (!text)
+        return;
+
+
+    let chat =
+        currentChat();
+
+    if (!chat){
+
+        createChat(false);
+
+        chat =
+            currentChat();
+    }
+
+
+    addMessage(
+        "user",
+        text
+    );
+
+
+    input.value = "";
+
+    resizeInput();
+
+    renderChat();
+
+    showThinking();
+
+    setGenerating(true);
+
+
+    try {
+
+        state.controller =
+            new AbortController();
+
+
+        /*
+        =================================================
+        EXISTING BACKEND CONNECTION
+        =================================================
+
+        POST /v1/chat
+
+        Nothing has been changed here.
+        */
+
+        const response =
+            await fetch(
+                CHAT_URL,
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        messages:
+                            chat.messages.map(
+                                message => ({
+                                    role:
+                                        message.role,
+
+                                    content:
+                                        message.content
+                                })
+                            ),
+
+                        model:
+                            state.model,
+
+                        live_search:
+                            state.liveSearch
+                    }),
+
+                    signal:
+                        state.controller.signal
+                }
+            );
+
+
+        const data =
+            await response
+                .json()
+                .catch(
+                    () => ({})
+                );
+
+
+        if (!response.ok){
+
+            throw new Error(
+                data.detail ||
+                data.error ||
+                `Server error ${response.status}`
+            );
+        }
+
+
+        /*
+        Supports old/new response formats.
+        */
+
+        const answer =
+            data.answer ||
+            data.response ||
+            data.message ||
+            data.content ||
+            "BISNU-X did not return an answer.";
+
+
+        removeThinking();
+
+
+        addMessage(
+            "assistant",
+            String(answer),
+            {
+
+                model:
+                    data.model ||
+                    state.model,
+
+                live_evidence:
+                    data.live_evidence ||
+                    data.sources ||
+                    []
+            }
+        );
+
+
+        renderChat();
+
+
+    } catch(error){
+
+        removeThinking();
+
+
+        if (
+            error.name ===
+            "AbortError"
+        ){
+
+            return;
+        }
+
+
+        addMessage(
+            "assistant",
+
+            "BISNU-X backend connection error.\n\n" +
+            error.message
+        );
+
+        renderChat();
+
+    } finally {
+
+        state.controller = null;
+
+        setGenerating(false);
+    }
+}
+
+
+send.addEventListener(
+    "click",
+    sendMessage
+);
+
+
+/* =====================================================
+   STOP
+===================================================== */
+
+function stopGeneration(){
+
+    if (state.controller){
+
+        state.controller.abort();
+    }
+}
+
+
+/* =====================================================
+   GENERATING UI
+===================================================== */
+
+function setGenerating(value){
+
+    state.generating =
+        value;
+
+    if (value){
+
+        send.classList.add("stop");
+
+        send.textContent =
+            "■";
+
+    } else {
+
+        send.classList.remove("stop");
+
+        send.textContent =
+            "↑";
+    }
+}
+
+
+/* =====================================================
+   REGENERATE
+===================================================== */
+
+async function regenerateMessage(
+    messageId
+){
+
+    if (state.generating)
+        return;
+
+    const chat =
+        currentChat();
+
+    if (!chat)
+        return;
+
+
+    const index =
+        chat.messages.findIndex(
+            m =>
+                m.id ===
+                messageId
+        );
+
+    if (index === -1)
+        return;
+
+
+    let userIndex = -1;
+
+    for(
+        let i=index-1;
+        i>=0;
+        i--
+    ){
+
+        if(
+            chat.messages[i].role ===
+            "user"
+        ){
+
+            userIndex = i;
+
+            break;
+        }
+    }
+
+
+    if (userIndex === -1)
+        return;
+
+
+    chat.messages =
+        chat.messages.slice(
+            0,
+            userIndex + 1
+        );
+
+
+    saveChats();
+
+    renderChat();
+
+    showThinking();
+
+    setGenerating(true);
+
+
+    try{
+
+        state.controller =
+            new AbortController();
+
+
+        const response =
+            await fetch(
+                CHAT_URL,
+                {
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        messages:
+                            chat.messages.map(
+                                m => ({
+                                    role:m.role,
+                                    content:m.content
+                                })
+                            ),
+
+                        model:
+                            state.model,
+
+                        live_search:
+                            state.liveSearch
+                    }),
+
+                    signal:
+                        state.controller.signal
+                }
+            );
+
+
+        const data =
+            await response
+                .json()
+                .catch(
+                    () => ({})
+                );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.detail ||
+                data.error ||
+                "Regeneration failed"
+            );
+        }
+
+
+        const answer =
+            data.answer ||
+            data.response ||
+            data.message ||
+            data.content ||
+            "No answer returned.";
+
+
+        removeThinking();
+
+
+        addMessage(
+            "assistant",
+            String(answer),
+            {
+                model:
+                    data.model ||
+                    state.model,
+
+                live_evidence:
+                    data.live_evidence ||
+                    data.sources ||
+                    []
+            }
+        );
+
+
+        renderChat();
+
+    }catch(error){
+
+        removeThinking();
+
+        if(
+            error.name !==
+            "AbortError"
+        ){
+
+            addMessage(
+                "assistant",
+                "Regeneration failed: " +
+                error.message
+            );
+
+            renderChat();
+        }
+
+    }finally{
+
+        state.controller = null;
+
+        setGenerating(false);
+    }
+}
+
+
+/* =====================================================
+   MODEL
+===================================================== */
+
+function updateModel(){
+
+    const names = {
+
+        auto:"BISNU AUTO",
+
+        qwen:"Qwen",
+
+        llama:"Llama"
+    };
+
+    modelName.textContent =
+        names[state.model] ||
+        "BISNU AUTO";
+}
+
+
+document
+    .getElementById("modelBtn")
+    .addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            modelMenu.classList.toggle(
+                "open"
+            );
+        }
+    );
+
+
+document
+    .querySelectorAll(
+        "#modelMenu button"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                state.model =
+                    button.dataset.model;
+
+                localStorage.setItem(
+                    MODEL_KEY,
+                    state.model
+                );
+
+                updateModel();
+
+                modelMenu.classList.remove(
+                    "open"
+                );
+            }
+        );
+    });
+
+
+document.addEventListener(
+    "click",
+    () => {
+        modelMenu.classList.remove(
+            "open"
+        );
+    }
+);
+
+
+/* =====================================================
+   LIVE SEARCH
+===================================================== */
+
+liveSearch.addEventListener(
+    "change",
+    () => {
+
+        state.liveSearch =
+            liveSearch.checked;
+
+        localStorage.setItem(
+            LIVE_KEY,
+            String(state.liveSearch)
+        );
+    }
+);
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+input.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter" &&
+            !event.shiftKey
+        ){
+
+            event.preventDefault();
+
+            sendMessage();
+        }
+    }
+);
+
+
+input.addEventListener(
+    "input",
+    resizeInput
+);
+
+
+function resizeInput(){
+
+    input.style.height =
+        "auto";
+
+    input.style.height =
+        Math.min(
+            input.scrollHeight,
+            180
+        ) + "px";
+
+    document.getElementById(
+        "count"
+    ).textContent =
+        input.value.length
+            .toLocaleString();
+}
+
+
+/* =====================================================
+   SUGGESTIONS
+===================================================== */
+
+document
+    .querySelectorAll(
+        ".suggestion"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                input.value =
+                    button.dataset.prompt ||
+                    "";
+
+                resizeInput();
+
+                input.focus();
+            }
+        );
+    });
+
+
+/* =====================================================
+   VOICE
+===================================================== */
+
+document
+    .getElementById("voice")
+    .addEventListener(
+        "click",
+        () => {
+
+            const Speech =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+            if(!Speech){
+
+                alert(
+                    "Voice input is not supported in this browser."
+                );
+
+                return;
+            }
+
+
+            const recognition =
+                new Speech();
+
+            recognition.lang =
+                navigator.language ||
+                "en-IN";
+
+            recognition.interimResults =
+                false;
+
+            recognition.onresult =
+                event => {
+
+                    const text =
+                        event
+                            .results[0][0]
+                            .transcript;
+
+                    input.value =
+                        input.value
+                            ? input.value +
+                              " " +
+                              text
+                            : text;
+
+                    resizeInput();
+                };
+
+            recognition.start();
+        }
+    );
+
+
+/* =====================================================
+   ATTACHMENT
+===================================================== */
+
+document
+    .getElementById("attach")
+    .addEventListener(
+        "click",
+        () => {
+
+            alert(
+                "Document/file upload can be connected to the existing backend."
+            );
+        }
+    );
+
+
+/* =====================================================
+   HEALTH
+===================================================== */
+
+async function checkHealth(){
+
+    try{
+
+        const response =
+            await fetch(
+                HEALTH_URL,
+                {
+                    cache:"no-store"
+                }
+            );
+
+        if(!response.ok)
+            throw new Error();
+
+
+        const data =
+            await response
+                .json()
+                .catch(
+                    () => ({})
+                );
+
+
+        document
+            .getElementById("statusDot")
+            .classList.add(
+                "online"
+            );
+
+        document
+            .getElementById("statusDot")
+            .classList.remove(
+                "offline"
+            );
+
+        document
+            .getElementById("statusText")
+            .textContent =
+                data.status ||
+                "Backend connected";
+
+    }catch{
+
+        document
+            .getElementById("statusDot")
+            .classList.remove(
+                "online"
+            );
+
+        document
+            .getElementById("statusDot")
+            .classList.add(
+                "offline"
+            );
+
+        document
+            .getElementById("statusText")
+            .textContent =
+                "Backend offline";
+    }
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showChat(){
+
+    document
+        .getElementById("chatScreen")
+        .classList.remove(
+            "hidden"
+        );
+
+    document
+        .getElementById("appsScreen")
+        .classList.add(
+            "hidden"
+        );
+
+    document
+        .getElementById("chatNav")
+        .classList.add(
+            "active"
+        );
+
+    document
+        .getElementById("appsNav")
+        .classList.remove(
+            "active"
+        );
+}
+
+
+function showApps(){
+
+    document
+        .getElementById("chatScreen")
+        .classList.add(
+            "hidden"
+        );
+
+    document
+        .getElementById("appsScreen")
+        .classList.remove(
+            "hidden"
+        );
+
+    document
+        .getElementById("chatNav")
+        .classList.remove(
+            "active"
+        );
+
+    document
+        .getElementById("appsNav")
+        .classList.add(
+            "active"
+        );
+}
+
+
+document
+    .getElementById("chatNav")
+    .addEventListener(
+        "click",
+        () => {
+
+            showChat();
+            closeSidebar();
+        }
+    );
+
+
+document
+    .getElementById("appsNav")
+    .addEventListener(
+        "click",
+        () => {
+
+            showApps();
+            closeSidebar();
+        }
+    );
+
+
+document
+    .getElementById("backChat")
+    .addEventListener(
+        "click",
+        showChat
+    );
+
+
+document
+    .querySelectorAll(
+        ".app-open"
+    )
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                showChat();
+
+                input.focus();
+            }
+        );
+    });
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document
+    .getElementById("searchChats")
+    .addEventListener(
+        "click",
+        () => {
+
+            const query =
+                prompt(
+                    "Search chats:"
+                );
+
+            if(!query)
+                return;
+
+
+            const q =
+                query.toLowerCase();
+
+
+            const matches =
+                state.chats.filter(
+                    chat => {
+
+                        if(
+                            chat.title
+                                .toLowerCase()
+                                .includes(q)
+                        ){
+
+                            return true;
+                        }
+
+
+                        return chat.messages.some(
+                            message =>
+                                message.content
+                                    .toLowerCase()
+                                    .includes(q)
+                        );
+                    }
+                );
+
+
+            historyList.innerHTML = "";
+
+
+            matches.forEach(
+                chat => {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+                    button.className =
+                        "history-item";
+
+                    button.textContent =
+                        chat.title;
+
+                    button.onclick =
+                        () => {
+
+                            state.currentChatId =
+                                chat.id;
+
+                            saveChats();
+
+                            renderHistory();
+                            renderChat();
+
+                            closeSidebar();
+                        };
+
+                    historyList.appendChild(
+                        button
+                    );
+                }
+            );
+
+
+            if(!matches.length){
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+                div.style.cssText =
+                    "padding:10px;color:#697181;font-size:11px";
+
+                div.textContent =
+                    "No chats found.";
+
+                historyList.appendChild(
+                    div
+                );
+            }
+        }
+    );
+
+
+/* =====================================================
+   COPY
+===================================================== */
+
+async function copyText(text){
+
+    try{
+
+        await navigator.clipboard.writeText(
+            text || ""
+        );
+
+    }catch{
+
+        const area =
+            document.createElement(
+                "textarea"
+            );
+
+        area.value =
+            text || "";
+
+        document.body.appendChild(
+            area
+        );
+
+        area.select();
+
+        document.execCommand(
+            "copy"
+        );
+
+        area.remove();
+    }
+}
+
+
+/* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
+
+document
+    .getElementById("mobileMenu")
+    .addEventListener(
+        "click",
+        openSidebar
+    );
+
+
+document
+    .getElementById("overlay")
+    .addEventListener(
+        "click",
+        closeSidebar
+    );
+
+
+function openSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.add(
+            "open"
+        );
+
+    document
+        .getElementById("overlay")
+        .classList.add(
+            "open"
+        );
+}
+
+
+function closeSidebar(){
+
+    document
+        .getElementById("sidebar")
+        .classList.remove(
+            "open"
+        );
+
+    document
+        .getElementById("overlay")
+        .classList.remove(
+            "open"
+        );
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+document
+    .getElementById("settings")
+    .addEventListener(
+        "click",
+        () => {
+
+            const clear =
+                confirm(
+                    "Clear all locally stored BISNU-X chats?"
+                );
+
+            if(clear){
+
+                state.chats = [];
+
+                state.currentChatId =
+                    null;
+
+                localStorage.removeItem(
+                    CHATS_KEY
+                );
+
+                localStorage.removeItem(
+                    CURRENT_KEY
+                );
+
+                createChat(true);
+            }
+        }
+    );
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getInitial(){
+
+    return (
+        state.user?.name ||
+        "U"
+    )
+    .charAt(0)
+    .toUpperCase();
+}
+
+
+function scrollBottom(){
+
+    requestAnimationFrame(
+        () => {
+
+            messages.scrollTop =
+                messages.scrollHeight;
+        }
+    );
+}
+
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if(
+            window.innerWidth > 760
+        ){
+
+            closeSidebar();
+        }
+    }
+);
+
+</script>
+
+</body>
+</html>

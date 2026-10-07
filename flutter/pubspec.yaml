@@ -1,0 +1,29 @@
+name: bisnu_x_mobile
+description: Local-first BISNU-X.1 Android client.
+publish_to: none
+version: 1.0.1+2
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_markdown: ^0.7.3
+  flutter_secure_storage: ^9.2.4
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  speech_to_text: ^7.0.0
+  flutter_tts: ^4.2.0
+  shared_preferences: ^2.3.3
+  image_picker: ^1.2.3
+  google_mlkit_text_recognition: ^0.17.1
+  url_launcher: ^6.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true

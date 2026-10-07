@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+python-multipart
+requests
+beautifulsoup4
+Pillow
+PyJWT
+psycopg[binary]>=3.2,<4
