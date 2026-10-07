@@ -1,0 +1,60 @@
+services:
+  - type: web
+    name: bisnu-x-backend
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+
+    envVars:
+      - key: BISNU_HOST
+        value: 0.0.0.0
+
+      - key: BISNU_PORT
+        value: 8080
+
+      - key: DATABASE_URL
+        sync: false
+
+      - key: BISNU_SECRET_KEY
+        generateValue: true
+
+      - key: BISNU_CORS_ORIGINS
+        sync: false
+
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+
+      # ------------------------------------------------------
+      # RAZORPAY
+      # Leave blank/not configured for now.
+      # Premium remains Coming Soon automatically.
+      # ------------------------------------------------------
+
+      - key: RAZORPAY_KEY_ID
+        sync: false
+
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+
+      - key: RAZORPAY_PREMIUM_PLAN_ID
+        sync: false
+
+      - key: RAZORPAY_ULTRA_PLAN_ID
+        sync: false
+
+      - key: RAZORPAY_PAYMENT_QR_PATH
+        value: payment/razorpay-qr.png
+
+      # AI runtime can be enabled separately.
+      - key: QWEN_ENABLED
+        value: "false"
+
+      - key: LLAMA_ENABLED
+        value: "false"
+
+      - key: LIVE_SEARCH_ENABLED
+        value: "true"
